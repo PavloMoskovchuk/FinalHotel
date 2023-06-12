@@ -7,8 +7,7 @@ import java.util.List;
 
 @Data
 @Builder
-public class GuestDto {
-
+public class ClientDto {
     private String name;
     private String surname;
     private String passport;
@@ -17,4 +16,3 @@ public class GuestDto {
     private List<Long> reservationsId;
 
 }
-

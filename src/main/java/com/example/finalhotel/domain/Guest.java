@@ -12,7 +12,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Client {
+public class Guest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,12 +22,13 @@ public class Client {
     private String surname;
     @Column
     private String passport;
+
     @Column
     private String phone;
     @Column
     private String sex;
 
 
-    @OneToMany(mappedBy = "clientId")
-    private List<Reservation> reservation;
+    @OneToMany(mappedBy = "guestId")
+    private List<Booking> booking;
 }

@@ -1,5 +1,6 @@
 package com.example.finalhotel.rest;
-import com.example.finalhotel.domain.Client;
+
+import com.example.finalhotel.domain.Guest;
 import com.example.finalhotel.dto.ClientDto;
 import com.example.finalhotel.service.ClientService;
 
@@ -10,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 
 @RestController
 @RequiredArgsConstructor
@@ -25,8 +25,8 @@ public class ClientsController {
     }
 
     @PostMapping("/clients")
-    public ResponseEntity<Void> save(@RequestBody Client client) {
-        clientService.save(client);
+    public ResponseEntity<Void> save(@RequestBody Guest guest) {
+        clientService.save(guest);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
@@ -37,7 +37,6 @@ public class ClientsController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-
     }
 
     @GetMapping("/client/surname/{surname}")
@@ -48,22 +47,17 @@ public class ClientsController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
+
     @PutMapping("/client/{id}")
     public ResponseEntity<Void> updateClient(@PathVariable("id") Long id, @RequestBody ClientDto clientsDto) {
-        Client client = clientService.findById(id);
-        if (client == null) {
+        Guest guest = clientService.findById(id);
+        if (guest == null) {
             return ResponseEntity.notFound().build();
         }
-        client.setName(clientsDto.getName());
-        client.setSurname(clientsDto.getSurname());
-        client.setPassport(clientsDto.getPassport());
-        client.setPhone(clientsDto.getPhone());
-        client.setSex(clientsDto.getSex());
-        clientService.save(client);
+        guest.setName(clientsDto.getName());
+        guest.setSurname(clientsDto.getSurname());
+        guest.setPassport(clientsDto.getPassport());
+        clientService.save(guest);
         return ResponseEntity.ok().build();
     }
-
-
-
-
 }

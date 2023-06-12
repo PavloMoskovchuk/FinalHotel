@@ -1,15 +1,12 @@
 package com.example.finalhotel.repository;
 
-import com.example.finalhotel.domain.Client;
+import com.example.finalhotel.domain.Guest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface GuestRepository extends JpaRepository<Client, Long> {
+public interface ClientRepository extends JpaRepository<Guest, Long> {
+    Guest findBySurname(String surname);
 
-
-    Client findBySurname(String surname);
-
-    Client findByPassport(String passport);
-
+    Guest findByPassport(String passport);
 }
